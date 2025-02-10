@@ -44,11 +44,11 @@ alexa_countvectorizer = vectorizer.fit_transform(df_alexa['verified_reviews'])
 print(vectorizer.get_feature_names_out())  
 print(alexa_countvectorizer.toarray())
 
-# Replace verified_reviews column with the transformed numerical representation
+# Replace verified_reviews column with the encoded matrix
 df_alexa.drop(['verified_reviews'], axis=1, inplace=True)
 encoded_reviews = pd.DataFrame(alexa_countvectorizer.toarray())
 
-# Merge the transformed reviews back into the dataset
+# concatenate the transformed reviews back into the dataset
 df_alexa = pd.concat([df_alexa, encoded_reviews], axis=1)
 
 # Save processed data
